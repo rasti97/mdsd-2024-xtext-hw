@@ -1,0 +1,9 @@
+grammar statemachine.dsl.MachineDsl with org.eclipse.xtext.common.Terminals
+
+generate machineDsl "http://www.dsl.statemachine/MachineDsl"
+
+Model:
+	greetings+=Greeting*;
+	
+Greeting:
+	'Hello' name=ID '!';
