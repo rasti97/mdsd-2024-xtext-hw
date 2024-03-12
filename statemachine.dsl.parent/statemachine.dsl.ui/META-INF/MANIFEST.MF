@@ -8,6 +8,8 @@ Bundle-SymbolicName: statemachine.dsl.ui; singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: statemachine.dsl,
  statemachine.dsl.ide,
+ webtest.model,
+ webtest.generator,
  org.eclipse.xtext.ui,
  org.eclipse.xtext.ui.shared,
  org.eclipse.xtext.ui.codetemplates.ui,
