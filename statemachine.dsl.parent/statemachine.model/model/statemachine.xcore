@@ -1,1 +1,6 @@
 package statemachine.model
+
+class Machine
+{
+	
+}

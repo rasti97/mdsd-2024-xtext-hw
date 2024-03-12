@@ -14,5 +14,4 @@ Require-Bundle: org.eclipse.xtext,
  statemachine.model,
  statemachine.generator
 Bundle-RequiredExecutionEnvironment: JavaSE-17
-
 Import-Package: org.apache.log4j
