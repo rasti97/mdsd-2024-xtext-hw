@@ -1,6 +1,7 @@
+@GenModel(modelDirectory="statemachine.model/src-gen", forceOverwrite="true", updateClasspath="false", complianceLevel="8.0")
 package statemachine.model
 
 class Machine
 {
-	
+	String name
 }

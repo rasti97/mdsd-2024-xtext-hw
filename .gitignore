@@ -26,7 +26,6 @@ replay_pid*
 # Eclipse
 bin
 test-bin
-xtend-gen
 .launch
 .settings
 *.xtendbin

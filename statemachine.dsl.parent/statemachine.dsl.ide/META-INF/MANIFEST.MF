@@ -8,5 +8,8 @@ Bundle-SymbolicName: statemachine.dsl.ide; singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: statemachine.dsl,
  org.eclipse.xtext.ide,
- org.eclipse.xtext.xbase.ide
+ org.eclipse.xtext.xbase.ide,
+ org.antlr.runtime;bundle-version="[3.2.0,3.2.1)"
 Bundle-RequiredExecutionEnvironment: JavaSE-17
+Export-Package: statemachine.dsl.ide.contentassist.antlr,
+ statemachine.dsl.ide.contentassist.antlr.internal
