@@ -57,6 +57,16 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case ModelPackage.MACHINE: return createMachine();
+			case ModelPackage.FIELD: return createField();
+			case ModelPackage.STATE: return createState();
+			case ModelPackage.ENTRY: return createEntry();
+			case ModelPackage.EXIT: return createExit();
+			case ModelPackage.EVENT: return createEvent();
+			case ModelPackage.JUMP: return createJump();
+			case ModelPackage.PRINT: return createPrint();
+			case ModelPackage.STRING_ARGUMENT: return createStringArgument();
+			case ModelPackage.FIELD_REFERENCE: return createFieldReference();
+			case ModelPackage.INCREMENT_FIELD: return createIncrementField();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -71,6 +81,116 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 	public Machine createMachine() {
 		MachineImpl machine = new MachineImpl();
 		return machine;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Field createField() {
+		FieldImpl field = new FieldImpl();
+		return field;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public State createState() {
+		StateImpl state = new StateImpl();
+		return state;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Entry createEntry() {
+		EntryImpl entry = new EntryImpl();
+		return entry;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Exit createExit() {
+		ExitImpl exit = new ExitImpl();
+		return exit;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Event createEvent() {
+		EventImpl event = new EventImpl();
+		return event;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Jump createJump() {
+		JumpImpl jump = new JumpImpl();
+		return jump;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Print createPrint() {
+		PrintImpl print = new PrintImpl();
+		return print;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public StringArgument createStringArgument() {
+		StringArgumentImpl stringArgument = new StringArgumentImpl();
+		return stringArgument;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public FieldReference createFieldReference() {
+		FieldReferenceImpl fieldReference = new FieldReferenceImpl();
+		return fieldReference;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public IncrementField createIncrementField() {
+		IncrementFieldImpl incrementField = new IncrementFieldImpl();
+		return incrementField;
 	}
 
 	/**

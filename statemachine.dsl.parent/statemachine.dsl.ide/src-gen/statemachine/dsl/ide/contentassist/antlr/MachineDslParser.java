@@ -31,8 +31,37 @@ public class MachineDslParser extends AbstractContentAssistParser {
 		}
 		
 		private static void init(ImmutableMap.Builder<AbstractElement, String> builder, MachineDslGrammarAccess grammarAccess) {
+			builder.put(grammarAccess.getCommandAccess().getAlternatives(), "rule__Command__Alternatives");
+			builder.put(grammarAccess.getPrintArgumentAccess().getAlternatives(), "rule__PrintArgument__Alternatives");
 			builder.put(grammarAccess.getMachineAccess().getGroup(), "rule__Machine__Group__0");
+			builder.put(grammarAccess.getFieldAccess().getGroup(), "rule__Field__Group__0");
+			builder.put(grammarAccess.getStateAccess().getGroup(), "rule__State__Group__0");
+			builder.put(grammarAccess.getEntryAccess().getGroup(), "rule__Entry__Group__0");
+			builder.put(grammarAccess.getExitAccess().getGroup(), "rule__Exit__Group__0");
+			builder.put(grammarAccess.getEventAccess().getGroup(), "rule__Event__Group__0");
+			builder.put(grammarAccess.getJumpAccess().getGroup(), "rule__Jump__Group__0");
+			builder.put(grammarAccess.getPrintAccess().getGroup(), "rule__Print__Group__0");
+			builder.put(grammarAccess.getPrintAccess().getGroup_2(), "rule__Print__Group_2__0");
+			builder.put(grammarAccess.getIncrementFieldAccess().getGroup(), "rule__IncrementField__Group__0");
 			builder.put(grammarAccess.getMachineAccess().getNameAssignment_1(), "rule__Machine__NameAssignment_1");
+			builder.put(grammarAccess.getMachineAccess().getFieldsAssignment_3(), "rule__Machine__FieldsAssignment_3");
+			builder.put(grammarAccess.getMachineAccess().getStatesAssignment_4(), "rule__Machine__StatesAssignment_4");
+			builder.put(grammarAccess.getFieldAccess().getNameAssignment_2(), "rule__Field__NameAssignment_2");
+			builder.put(grammarAccess.getStateAccess().getInitialAssignment_0(), "rule__State__InitialAssignment_0");
+			builder.put(grammarAccess.getStateAccess().getNameAssignment_2(), "rule__State__NameAssignment_2");
+			builder.put(grammarAccess.getStateAccess().getEntryAssignment_4(), "rule__State__EntryAssignment_4");
+			builder.put(grammarAccess.getStateAccess().getEventsAssignment_5(), "rule__State__EventsAssignment_5");
+			builder.put(grammarAccess.getStateAccess().getExitAssignment_6(), "rule__State__ExitAssignment_6");
+			builder.put(grammarAccess.getEntryAccess().getCommandsAssignment_3(), "rule__Entry__CommandsAssignment_3");
+			builder.put(grammarAccess.getExitAccess().getCommandsAssignment_3(), "rule__Exit__CommandsAssignment_3");
+			builder.put(grammarAccess.getEventAccess().getNameAssignment_1(), "rule__Event__NameAssignment_1");
+			builder.put(grammarAccess.getEventAccess().getCommandsAssignment_3(), "rule__Event__CommandsAssignment_3");
+			builder.put(grammarAccess.getJumpAccess().getTargetAssignment_1(), "rule__Jump__TargetAssignment_1");
+			builder.put(grammarAccess.getPrintAccess().getArgumentsAssignment_1(), "rule__Print__ArgumentsAssignment_1");
+			builder.put(grammarAccess.getPrintAccess().getArgumentsAssignment_2_1(), "rule__Print__ArgumentsAssignment_2_1");
+			builder.put(grammarAccess.getStringArgumentAccess().getValueAssignment(), "rule__StringArgument__ValueAssignment");
+			builder.put(grammarAccess.getFieldReferenceAccess().getFieldAssignment(), "rule__FieldReference__FieldAssignment");
+			builder.put(grammarAccess.getIncrementFieldAccess().getFieldAssignment_1(), "rule__IncrementField__FieldAssignment_1");
 		}
 	}
 	

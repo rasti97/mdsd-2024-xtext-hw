@@ -15,7 +15,9 @@ Require-Bundle: org.eclipse.xtext,
  statemachine.generator,
  org.eclipse.xtext.xbase.lib;bundle-version="2.14.0",
  org.eclipse.xtext.util,
- org.antlr.runtime;bundle-version="[3.2.0,3.2.1)"
+ org.antlr.runtime;bundle-version="[3.2.0,3.2.1)",
+ org.eclipse.emf.ecore,
+ org.eclipse.emf.common
 Bundle-RequiredExecutionEnvironment: JavaSE-17
 Export-Package: statemachine.dsl.serializer,
  statemachine.dsl.parser.antlr,
@@ -24,5 +26,8 @@ Export-Package: statemachine.dsl.serializer,
  statemachine.dsl,
  statemachine.dsl.services,
  statemachine.dsl.scoping,
- statemachine.dsl.parser.antlr.internal
+ statemachine.dsl.parser.antlr.internal,
+ statemachine.dsl.machineDsl,
+ statemachine.dsl.machineDsl.impl,
+ statemachine.dsl.machineDsl.util
 Import-Package: org.apache.log4j

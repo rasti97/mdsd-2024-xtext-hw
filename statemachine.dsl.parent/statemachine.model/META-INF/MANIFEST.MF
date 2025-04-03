@@ -13,4 +13,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.xtext.xbase.lib,
  org.eclipse.emf.ecore.xcore.lib
 Bundle-ActivationPolicy: lazy
-Export-Package: statemachine.model
+Export-Package: statemachine.model,
+ statemachine.dsl.machineDsl,
+ statemachine.dsl.machineDsl.impl,
+ statemachine.dsl.machineDsl.util

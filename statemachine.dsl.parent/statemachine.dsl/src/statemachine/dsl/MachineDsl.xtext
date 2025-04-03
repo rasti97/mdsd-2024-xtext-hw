@@ -1,6 +1,57 @@
 grammar statemachine.dsl.MachineDsl with org.eclipse.xtext.common.Terminals
 
-import "statemachine.model"
 import "http://www.eclipse.org/emf/2002/Ecore"
 
-Machine: 'machine' name=ID;
+generate machineDsl "http://www.example.org/machineDsl"
+
+Machine:
+    'machine' name=ID '{'
+        (fields+=Field)*
+        (states+=State)*
+    '}';
+
+Field:
+    'int' {Field} name=ID ';';
+
+State:
+    (initial?='initial')? 'state' name=ID '{'
+        (entry=Entry)?
+        (events+=Event)*
+        (exit=Exit)?
+    '}';
+
+Entry:
+    'entry' {Entry} '{'
+        (commands+=Command)*
+    '}';
+
+Exit:
+    'exit' {Exit} '{'
+        (commands+=Command)*
+    '}';
+
+Event:
+    'event' name=ID '{'
+        (commands+=Command)*
+    '}';
+
+Command:
+    Jump | Print | IncrementField;
+
+Jump:
+    'jump' target=[State] ';';
+
+Print:
+    'print' arguments+=PrintArgument (',' arguments+=PrintArgument)* ';';
+
+PrintArgument:
+    StringArgument | FieldReference;
+
+StringArgument:
+    value=STRING;
+
+FieldReference:
+    field=[Field];
+
+IncrementField:
+    '++' field=[Field] ';';

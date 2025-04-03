@@ -13,7 +13,7 @@ public abstract class AbstractMachineDslValidator extends AbstractDeclarativeVal
 	@Override
 	protected List<EPackage> getEPackages() {
 		List<EPackage> result = new ArrayList<EPackage>();
-		result.add(EPackage.Registry.INSTANCE.getEPackage("statemachine.model"));
+		result.add(statemachine.dsl.machineDsl.MachineDslPackage.eINSTANCE);
 		return result;
 	}
 }

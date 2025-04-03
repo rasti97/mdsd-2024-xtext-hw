@@ -1,7 +1,68 @@
-@GenModel(modelDirectory="statemachine.model/src-gen", forceOverwrite="true", updateClasspath="false", complianceLevel="8.0")
+@GenModel(
+    modelDirectory = "statemachine.model/src-gen",
+    forceOverwrite = "true",
+    updateClasspath = "false",
+    complianceLevel = "8.0"
+)
+@Ecore(
+    nsURI = "http://www.example.org/statemachine",
+    nsPrefix = "statemachine"
+)
 package statemachine.model
 
-class Machine
-{
-	String name
+class Machine {
+    String name
+    contains Field[] fields
+    contains State[] states
+}
+
+class Field {
+    String name
+}
+
+class State {
+    String name
+    boolean initial
+    contains Entry entry
+    contains Exit exit
+    contains Event[] events
+}
+
+class Entry {
+    contains Command[] commands
+}
+
+class Exit {
+    contains Command[] commands
+}
+
+class Event {
+    String name
+    contains Command[] commands
+}
+
+abstract class Command {
+}
+
+class Jump extends Command {
+    refers State target
+}
+
+class Print extends Command {
+    contains PrintArgument[] arguments
+}
+
+abstract class PrintArgument {
+}
+
+class StringArgument extends PrintArgument {
+    String value
+}
+
+class FieldReference extends PrintArgument {
+    refers Field field
+}
+
+class IncrementField extends Command {
+    refers Field field
 }

@@ -14,9 +14,19 @@ import org.eclipse.xtext.serializer.ISerializationContext;
 import org.eclipse.xtext.serializer.acceptor.SequenceFeeder;
 import org.eclipse.xtext.serializer.sequencer.AbstractDelegatingSemanticSequencer;
 import org.eclipse.xtext.serializer.sequencer.ITransientValueService.ValueTransient;
+import statemachine.dsl.machineDsl.Entry;
+import statemachine.dsl.machineDsl.Event;
+import statemachine.dsl.machineDsl.Exit;
+import statemachine.dsl.machineDsl.Field;
+import statemachine.dsl.machineDsl.FieldReference;
+import statemachine.dsl.machineDsl.IncrementField;
+import statemachine.dsl.machineDsl.Jump;
+import statemachine.dsl.machineDsl.Machine;
+import statemachine.dsl.machineDsl.MachineDslPackage;
+import statemachine.dsl.machineDsl.Print;
+import statemachine.dsl.machineDsl.State;
+import statemachine.dsl.machineDsl.StringArgument;
 import statemachine.dsl.services.MachineDslGrammarAccess;
-import statemachine.model.Machine;
-import statemachine.model.ModelPackage;
 
 @SuppressWarnings("all")
 public class MachineDslSemanticSequencer extends AbstractDelegatingSemanticSequencer {
@@ -30,10 +40,40 @@ public class MachineDslSemanticSequencer extends AbstractDelegatingSemanticSeque
 		ParserRule rule = context.getParserRule();
 		Action action = context.getAssignedAction();
 		Set<Parameter> parameters = context.getEnabledBooleanParameters();
-		if (epackage == ModelPackage.eINSTANCE)
+		if (epackage == MachineDslPackage.eINSTANCE)
 			switch (semanticObject.eClass().getClassifierID()) {
-			case ModelPackage.MACHINE:
+			case MachineDslPackage.ENTRY:
+				sequence_Entry(context, (Entry) semanticObject); 
+				return; 
+			case MachineDslPackage.EVENT:
+				sequence_Event(context, (Event) semanticObject); 
+				return; 
+			case MachineDslPackage.EXIT:
+				sequence_Exit(context, (Exit) semanticObject); 
+				return; 
+			case MachineDslPackage.FIELD:
+				sequence_Field(context, (Field) semanticObject); 
+				return; 
+			case MachineDslPackage.FIELD_REFERENCE:
+				sequence_FieldReference(context, (FieldReference) semanticObject); 
+				return; 
+			case MachineDslPackage.INCREMENT_FIELD:
+				sequence_IncrementField(context, (IncrementField) semanticObject); 
+				return; 
+			case MachineDslPackage.JUMP:
+				sequence_Jump(context, (Jump) semanticObject); 
+				return; 
+			case MachineDslPackage.MACHINE:
 				sequence_Machine(context, (Machine) semanticObject); 
+				return; 
+			case MachineDslPackage.PRINT:
+				sequence_Print(context, (Print) semanticObject); 
+				return; 
+			case MachineDslPackage.STATE:
+				sequence_State(context, (State) semanticObject); 
+				return; 
+			case MachineDslPackage.STRING_ARGUMENT:
+				sequence_StringArgument(context, (StringArgument) semanticObject); 
 				return; 
 			}
 		if (errorAcceptor != null)
@@ -43,19 +83,188 @@ public class MachineDslSemanticSequencer extends AbstractDelegatingSemanticSeque
 	/**
 	 * <pre>
 	 * Contexts:
-	 *     Machine returns Machine
+	 *     Entry returns Entry
+	 *
+	 * Constraint:
+	 *     commands+=Command*
+	 * </pre>
+	 */
+	protected void sequence_Entry(ISerializationContext context, Entry semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     Event returns Event
+	 *
+	 * Constraint:
+	 *     (name=ID commands+=Command*)
+	 * </pre>
+	 */
+	protected void sequence_Event(ISerializationContext context, Event semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     Exit returns Exit
+	 *
+	 * Constraint:
+	 *     commands+=Command*
+	 * </pre>
+	 */
+	protected void sequence_Exit(ISerializationContext context, Exit semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     PrintArgument returns FieldReference
+	 *     FieldReference returns FieldReference
+	 *
+	 * Constraint:
+	 *     field=[Field|ID]
+	 * </pre>
+	 */
+	protected void sequence_FieldReference(ISerializationContext context, FieldReference semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, MachineDslPackage.Literals.FIELD_REFERENCE__FIELD) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MachineDslPackage.Literals.FIELD_REFERENCE__FIELD));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getFieldReferenceAccess().getFieldFieldIDTerminalRuleCall_0_1(), semanticObject.eGet(MachineDslPackage.Literals.FIELD_REFERENCE__FIELD, false));
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     Field returns Field
 	 *
 	 * Constraint:
 	 *     name=ID
 	 * </pre>
 	 */
-	protected void sequence_Machine(ISerializationContext context, Machine semanticObject) {
+	protected void sequence_Field(ISerializationContext context, Field semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, ModelPackage.Literals.MACHINE__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ModelPackage.Literals.MACHINE__NAME));
+			if (transientValues.isValueTransient(semanticObject, MachineDslPackage.Literals.FIELD__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MachineDslPackage.Literals.FIELD__NAME));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getMachineAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getFieldAccess().getNameIDTerminalRuleCall_2_0(), semanticObject.getName());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     Command returns IncrementField
+	 *     IncrementField returns IncrementField
+	 *
+	 * Constraint:
+	 *     field=[Field|ID]
+	 * </pre>
+	 */
+	protected void sequence_IncrementField(ISerializationContext context, IncrementField semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, MachineDslPackage.Literals.INCREMENT_FIELD__FIELD) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MachineDslPackage.Literals.INCREMENT_FIELD__FIELD));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getIncrementFieldAccess().getFieldFieldIDTerminalRuleCall_1_0_1(), semanticObject.eGet(MachineDslPackage.Literals.INCREMENT_FIELD__FIELD, false));
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     Command returns Jump
+	 *     Jump returns Jump
+	 *
+	 * Constraint:
+	 *     target=[State|ID]
+	 * </pre>
+	 */
+	protected void sequence_Jump(ISerializationContext context, Jump semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, MachineDslPackage.Literals.JUMP__TARGET) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MachineDslPackage.Literals.JUMP__TARGET));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getJumpAccess().getTargetStateIDTerminalRuleCall_1_0_1(), semanticObject.eGet(MachineDslPackage.Literals.JUMP__TARGET, false));
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     Machine returns Machine
+	 *
+	 * Constraint:
+	 *     (name=ID fields+=Field* states+=State*)
+	 * </pre>
+	 */
+	protected void sequence_Machine(ISerializationContext context, Machine semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     Command returns Print
+	 *     Print returns Print
+	 *
+	 * Constraint:
+	 *     (arguments+=PrintArgument arguments+=PrintArgument*)
+	 * </pre>
+	 */
+	protected void sequence_Print(ISerializationContext context, Print semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     State returns State
+	 *
+	 * Constraint:
+	 *     (initial?='initial'? name=ID entry=Entry? events+=Event* exit=Exit?)
+	 * </pre>
+	 */
+	protected void sequence_State(ISerializationContext context, State semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     PrintArgument returns StringArgument
+	 *     StringArgument returns StringArgument
+	 *
+	 * Constraint:
+	 *     value=STRING
+	 * </pre>
+	 */
+	protected void sequence_StringArgument(ISerializationContext context, StringArgument semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, MachineDslPackage.Literals.STRING_ARGUMENT__VALUE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MachineDslPackage.Literals.STRING_ARGUMENT__VALUE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getStringArgumentAccess().getValueSTRINGTerminalRuleCall_0(), semanticObject.getValue());
 		feeder.finish();
 	}
 	

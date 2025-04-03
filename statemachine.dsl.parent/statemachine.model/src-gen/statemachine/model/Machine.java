@@ -2,6 +2,7 @@
  */
 package statemachine.model;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -14,6 +15,8 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link statemachine.model.Machine#getName <em>Name</em>}</li>
+ *   <li>{@link statemachine.model.Machine#getFields <em>Fields</em>}</li>
+ *   <li>{@link statemachine.model.Machine#getStates <em>States</em>}</li>
  * </ul>
  *
  * @see statemachine.model.ModelPackage#getMachine()
@@ -42,5 +45,29 @@ public interface Machine extends EObject {
 	 * @generated
 	 */
 	void setName(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Fields</b></em>' containment reference list.
+	 * The list contents are of type {@link statemachine.model.Field}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Fields</em>' containment reference list.
+	 * @see statemachine.model.ModelPackage#getMachine_Fields()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<Field> getFields();
+
+	/**
+	 * Returns the value of the '<em><b>States</b></em>' containment reference list.
+	 * The list contents are of type {@link statemachine.model.State}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>States</em>' containment reference list.
+	 * @see statemachine.model.ModelPackage#getMachine_States()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<State> getStates();
 
 } // Machine
